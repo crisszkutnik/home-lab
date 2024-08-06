@@ -9,7 +9,7 @@
 
 <div align="center">
   
-  ![GitHub last commit](https://img.shields.io/github/last-commit/crisszkutnik/k8s-home-lab-deployments)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/crisszkutnik/home-lab)
   [![Renovate enabled](https://img.shields.io/badge/Renovate-Enabled-brightgreen)](https://github.com/renovatebot/renovate)
   [![K3s](https://img.shields.io/badge/K3s-gold)](https://k3s.io/)
   
