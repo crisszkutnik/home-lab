@@ -36,7 +36,6 @@ The cluster runs a variety of applications for setup and management such as:
 - [MetalLB](https://metallb.universe.tf/) as load balancer via L2 advertisement
 - [NGINX ingress controller](https://docs.nginx.com/nginx-ingress-controller/) is used as an ingress controller
 - [Prometheus](https://prometheus-operator.dev/) for metrics and monitoring
-- [1Password operator](https://developer.1password.com/docs/k8s/k8s-integrations/) for secret management and automatic redeployment on secret update
 
 It also runs a bunch of other applications that were developed for personal use
 
