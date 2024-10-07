@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finance-market-data-puller-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finance-market-data-puller-pod
+  template:
+    metadata:
+      labels:
+        app: finance-market-data-puller-pod
+    spec:
+      containers:
+        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.0
+          imagePullPolicy: IfNotPresent
+          name: finance-market-data-puller-container
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: 1
+          ports:
+            - containerPort: 8080
