@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   selector:
-    app: pushgateway
+    app: pushgateway-pod
   type: NodePort
   ports:
     - port: 9091

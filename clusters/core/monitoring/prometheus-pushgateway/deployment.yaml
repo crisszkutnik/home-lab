@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pushgateway
+  name: pushgateway-pod
   namespace: monitoring
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pushgateway
+      app: pushgateway-pod
   template:
     metadata:
       labels:
-        app: pushgateway
+        app: pushgateway-pod
     spec:
       containers:
-        - name: pushgateway
+        - name: pushgateway-container
           image: prom/pushgateway:v1.10.0
           ports:
             - containerPort: 9091

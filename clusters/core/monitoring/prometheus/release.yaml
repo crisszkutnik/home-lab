@@ -18,4 +18,5 @@ spec:
     grafana:
       enabled: false
     prometheus:
-      type: NodePort
+      service:
+        type: NodePort
