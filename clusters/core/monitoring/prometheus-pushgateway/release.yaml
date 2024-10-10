@@ -17,7 +17,7 @@ spec:
     serviceMonitor:
       enabled: true
       additionalLabels:
-        release: prom-stack
+        release: prometheus
     service:
       type: NodePort
       nodePort: 32500
