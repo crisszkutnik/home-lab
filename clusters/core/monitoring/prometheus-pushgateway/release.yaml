@@ -16,6 +16,8 @@ spec:
   values:
     serviceMonitor:
       enabled: true
+      additionalLabels:
+        release: prom-stack
     service:
       type: NodePort
       nodePort: 32500
