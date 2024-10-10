@@ -7,15 +7,15 @@ spec:
   interval: 10m
   chart:
     spec:
-      chart: kube-prometheus-stack
+      chart: prometheus-pushgateway
       version: 65.1.1
       sourceRef:
         kind: HelmRepository
         name: prometheus-charts
         namespace: flux-system
   values:
-    grafana:
-      enabled: false
-    prometheus:
-      service:
-        type: NodePort
+    serviceMonitor:
+      enabled: true
+    service:
+      type: NodePort
+      nodePort: 32500
