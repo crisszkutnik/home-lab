@@ -7,4 +7,4 @@ spec:
     matchLabels:
       app: financial-market-data-puller
   endpoints:
-    - port: prometheus-metrics
+    - port: prom-metrics
