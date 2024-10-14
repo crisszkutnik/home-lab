@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: finance-market-data-puller
+  namespace: default
 spec:
   selector:
     matchLabels:
