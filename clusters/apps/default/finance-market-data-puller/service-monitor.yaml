@@ -3,6 +3,8 @@ kind: ServiceMonitor
 metadata:
   name: finance-market-data-puller
   namespace: default
+  labels:
+    release: prometheus
 spec:
   selector:
     matchLabels:
