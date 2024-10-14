@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: finance-market-data-puller-deployment
   namespace: default
+  labels:
+    app: financial-market-data-puller
 spec:
   replicas: 1
   selector:
@@ -14,7 +16,7 @@ spec:
         app: finance-market-data-puller-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.2
+        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.3
           imagePullPolicy: IfNotPresent
           name: finance-market-data-puller-container
           resources:
@@ -22,4 +24,7 @@ spec:
               memory: "512Mi"
               cpu: 1
           ports:
-            - containerPort: 8080
+            - name: web
+              containerPort: 8080
+            - name: prometheus-metrics
+              containerPort: 9400
