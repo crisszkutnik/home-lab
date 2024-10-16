@@ -1,0 +1,10 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: dollar-data-to-google-sheets-job-alerts
+spec:
+  groups:
+    - name: Availability rules
+      rules:
+        - alert: Job did not run
+          expr: vector(1)
