@@ -30,9 +30,13 @@ spec:
           - receiver: discord
             matchers:
               - alert_notifier: discord
+      receivers:
+        - name: discord
+          discord_configs:
+            send_resolved: true
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-stack-receivers-config-secret
-      valuesKey: values.yaml
+      valuesKey: webhook_url
       optional: false
-      targetPath: alertmanager
+      targetPath: alertmanager.receivers[0].discord_configs.webhook_url
