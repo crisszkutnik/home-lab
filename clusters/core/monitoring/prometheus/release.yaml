@@ -31,7 +31,7 @@ spec:
             matchers:
               - alert_notifier: discord
   valuesFrom:
-    - kind: ConfigMap
+    - kind: Secret
       name: kube-prometheus-stack-receivers-config-secret
       valuesKey: values.yaml
       optional: false
