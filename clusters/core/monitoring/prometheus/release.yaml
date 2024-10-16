@@ -19,24 +19,8 @@ spec:
     prometheus:
       service:
         type: NodePort
-    alertmanager:
-      route:
-        group_by: ["namespace"]
-        group_wait: 30s
-        group_interval: 5m
-        repeat_interval: 12h
-        receiver: "null"
-        routes:
-          - receiver: discord
-            matchers:
-              - alert_notifier: discord
-      receivers:
-        - name: discord
-          discord_configs:
-            send_resolved: true
   valuesFrom:
-    - kind: Secret
-      name: kube-prometheus-stack-receivers-config-secret
-      valuesKey: webhook_url
+    - kind: ConfigMap
+      name: kube-prometheus-stack-alertmanager-configmap
+      valuesKey: values.yaml
       optional: false
-      targetPath: alertmanager.receivers[0].discord_configs.webhook_url
