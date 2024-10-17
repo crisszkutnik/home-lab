@@ -19,10 +19,8 @@ spec:
     prometheus:
       service:
         type: NodePort
-    alertmanager:
-      enabled: false
-  # valuesFrom:
-  #   - kind: ConfigMap
-  #     name: kube-prometheus-stack-alertmanager-configmap
-  #     valuesKey: values.yaml
-  #     optional: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: kube-prometheus-stack-alertmanager-configmap
+      valuesKey: values.yaml
+      optional: false
