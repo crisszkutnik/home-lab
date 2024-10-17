@@ -23,10 +23,10 @@ spec:
     # Alertmanager needs to be disabled and enabled again in order to
     # changes in values.yaml to be applied
     # TODO: Implement a better way to handle this
-    alertmanager:
-      enabled: false
-  # valuesFrom:
-  #   - kind: ConfigMap
-  #     name: kube-prometheus-stack-alertmanager-configmap
-  #     valuesKey: values.yaml
-  #     optional: false
+    # alertmanager:
+    #   enabled: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: kube-prometheus-stack-alertmanager-configmap
+      valuesKey: values.yaml
+      optional: false
