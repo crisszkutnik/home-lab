@@ -2,9 +2,18 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: dollar-data-to-google-sheets-job-alerts
+  labels:
+    release: prometheus
 spec:
   groups:
-    - name: Availability rules
+    - name: availability
       rules:
-        - alert: Job did not run
-          expr: vector(1)
+        - alert: JobDidNotRun
+          # Add a 5-minute window just in case
+          expr: kube_cronjob_status_last_successful_time{cronjob="dollar-data-to-google-sheets-etl-cronjob"} < (time() - 8.64e+7 - 300000)
+          labels:
+            severity: critical
+            notifier: discord
+          annotations:
+            summary: Dollar data job did not run
+            description: dollar-data-to-google-sheets job did not run when expected (everyday at 18:00)
