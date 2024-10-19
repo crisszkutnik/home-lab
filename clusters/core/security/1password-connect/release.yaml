@@ -15,6 +15,6 @@ spec:
         namespace: flux-system
   valuesFrom:
     - kind: Secret
-      name: 1password-credentials
-      valuesKey: 1password-credentials
+      name: op-credentials
+      valuesKey: op-credentials
       targetPath: connect.credentials
