@@ -13,19 +13,3 @@ spec:
         kind: HelmRepository
         name: external-secrets-charts
         namespace: flux-system
----
-apiVersion: external-secrets.io/v1beta1
-kind: SecretStore
-metadata:
-  name: 1password-secrets-store
-spec:
-  provider:
-    onepassword:
-      connectHost: http://onepassword-connect.security.svc.cluster.local:8080
-      vaults:
-        K3s_cluster: 1
-      auth:
-        secretRef:
-          connectTokenSecretRef:
-            name: external-secrets-operator-op-access-token
-            key: token
