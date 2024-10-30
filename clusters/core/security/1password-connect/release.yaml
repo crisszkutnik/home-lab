@@ -17,4 +17,4 @@ spec:
     - kind: Secret
       name: op-credentials
       valuesKey: op-credentials
-      targetPath: connect.credentials
+      targetPath: connect.credentials_base64
