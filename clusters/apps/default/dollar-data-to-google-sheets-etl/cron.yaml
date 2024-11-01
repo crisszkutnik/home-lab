@@ -22,17 +22,17 @@ spec:
                 - name: SHEET_ID
                   valueFrom:
                     secretKeyRef:
-                      name: dollar-data-to-google-spreadsheets-etl-secret
+                      name: dollar-data-to-google-sheets-etl-secrets
                       key: SHEET_ID
                 - name: SERVICE_ACCOUNT_EMAIL
                   valueFrom:
                     secretKeyRef:
-                      name: dollar-data-to-google-spreadsheets-etl-secret
+                      name: dollar-data-to-google-sheets-etl-secrets
                       key: SERVICE_ACCOUNT_EMAIL
                 - name: SERVICE_ACCOUNT_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: dollar-data-to-google-spreadsheets-etl-secret
+                      name: dollar-data-to-google-sheets-etl-secrets
                       key: SERVICE_ACCOUNT_KEY
                 - name: KEY_BASE64
                   value: "true"
@@ -41,5 +41,5 @@ spec:
                 - name: DISCORD_NOTIFICATION_CHANNEL_ID
                   valueFrom:
                     secretKeyRef:
-                      name: dollar-data-to-google-spreadsheets-etl-secret
+                      name: dollar-data-to-google-sheets-etl-secrets
                       key: DISCORD_NOTIFICATION_CHANNEL_ID
