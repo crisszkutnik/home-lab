@@ -30,5 +30,5 @@ spec:
             - name: DISCORD_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: discord-notifier-secret
+                  name: discord-notifier-secrets
                   key: DISCORD_TOKEN
