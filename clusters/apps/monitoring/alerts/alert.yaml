@@ -7,7 +7,7 @@ spec:
   summary: "Reconciliation information"
   providerRef:
     name: discord-bot
-  eventSeverity: error
+  eventSeverity: info
   eventSources:
     - kind: GitRepository
       name: "*"
