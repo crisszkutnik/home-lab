@@ -6,4 +6,4 @@ metadata:
 spec:
   type: discord
   secretRef:
-    name: DISCORD_WEBHOOK_URL
+    name: flux-notifications-discord-webhook
