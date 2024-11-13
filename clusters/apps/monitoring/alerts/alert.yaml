@@ -2,7 +2,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: reconciliation-info
-  namespace: monitoring
+  namespace: flux-system
 spec:
   summary: "Reconciliation information"
   providerRef:
