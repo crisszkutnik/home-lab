@@ -22,15 +22,16 @@ spec:
     service:
       type: NodePort
       nodePort: 30001
+    # Change ports for both readinessProbe and livenessProbe as the release will fail otherwise
     readinessProbe:
       httpGet:
         path: /api/health
-        port: 80
+        port: 30001
       initialDelaySeconds: 60
     livenessProbe:
       httpGet:
         path: /api/health
-        port: 80
+        port: 30001
       initialDelaySeconds: 60
       timeoutSeconds: 30
       failureThreshold: 10
