@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-finance-market-data-puller
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: private-k8s.cristobalszk.dev
+      http:
+        paths:
+          - path: /finance-market-data-puller
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 8080
