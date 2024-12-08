@@ -42,6 +42,11 @@ This playbook has no variables.
 192.168.0.20=192.168.0.200
 192.168.0.26=192.168.0.211
 192.168.0.27=192.168.0.212
+
+[cloudflare_ip_map]
+192.168.0.20=150.0.0.1
+192.168.0.26=150.0.0.2
+192.168.0.27=150.0.0.3
 ```
 
 ```ini
@@ -91,8 +96,18 @@ nodes
 
 | Variable name     | Default value | Description                                                      |
 | ----------------- | ------------- | ---------------------------------------------------------------- |
-| master_ip         | jammy         | The codename of the Ubuntu version that the hosts have installed |
+| master_ip         |               | The codename of the Ubuntu version that the hosts have installed |
 | extra_server_args |               | Extra Kubernetes arguments used for the master node              |
 | extra_agent_args  |               | Extra Kubernetes arguments used for the nodes                    |
 | ansible_user      |               | Non-root user that will be used to connect to the hosts          |
 | ansible_sudo_pass |               | Sudo password of the hosts                                       |
+
+## Setup cloudflared
+
+Install `cloudflared` in host and connect to tunnel
+
+### Variables
+
+| Variable name | Default value | Description                         |
+| ------------- | ------------- | ----------------------------------- |
+| tunnel_token  |               | Token used to connect to the tunnel |

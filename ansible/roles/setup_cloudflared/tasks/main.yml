@@ -1,0 +1,15 @@
+- name: Download Cloudflared binary
+  command: curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
+  become: true
+
+- name: Install Cloudflared
+  command: dpkg -i cloudflared.deb
+  become: true
+
+- name: Cleanup binary
+  command: rm cloudflared.deb
+  become: true
+
+- name: Connect to tunnel
+  command: cloudflared service install {{ tunnel_token }}
+  become: true

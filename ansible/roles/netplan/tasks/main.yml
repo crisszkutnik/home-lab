@@ -5,6 +5,7 @@
 - name: "Retrieve IP from INI file"
   set_fact:
     target_ip_address: "{{ lookup('ini', '{{ host_ip_address }} section=ip_map file=../../host_map.ini' ) }}"
+    target_ip_address: "{{ lookup('ini', '{{ cloudflare_ip_address }} section=ip_map file=../../host_map.ini' ) }}"
 
 - name: Print new IP
   debug:
