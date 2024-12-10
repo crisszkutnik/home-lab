@@ -14,14 +14,13 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "home_cluster_config"
     }
 
     ingress_rule {
-      hostname = "public-k8s.cristobalszk.dev"
-      service  = "http://localhost:31956"
-
+      hostname = local.public_domain
+      service  = local.nginx_service_localhost_url
     }
 
     ingress_rule {
-      hostname = "private-k8s.cristobalszk.dev"
-      service  = "http://localhost:31956"
+      hostname = local.private_domain
+      service  = local.nginx_service_localhost_url
     }
 
     ingress_rule {

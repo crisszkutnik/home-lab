@@ -14,10 +14,6 @@ variable "ssh_usernames" {
   type = list(string)
 }
 
-variable "home_cluster_cidr" {
-  type = string
-}
-
 variable "tunnel_ipv4_ips" {
   type = map(string)
 }
