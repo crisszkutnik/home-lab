@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: discord-notifier-deployment
   namespace: default
+  labels:
+    app: discord-notifier
 spec:
   replicas: 1
   selector:
