@@ -13,8 +13,8 @@ spec:
     - host: private-k8s.cristobalszk.dev
       http:
         paths:
-          - path: /finance-market-data-puller
-            pathType: Prefix
+          - path: /finance-market-data-puller(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: finance-market-data-puller-service
