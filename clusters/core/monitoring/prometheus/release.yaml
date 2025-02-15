@@ -19,8 +19,6 @@ spec:
     prometheus:
       service:
         type: NodePort
-  values:
-    prometheus:
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
