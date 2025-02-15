@@ -10,13 +10,16 @@ spec:
   timeZone: "America/Argentina/Buenos_Aires"
   jobTemplate:
     spec:
+      # 20 minutes
+      activeDeadlineSeconds: 1200
+      # 72 hours
       ttlSecondsAfterFinished: 259200
       template:
         spec:
           restartPolicy: OnFailure
           containers:
             - name: dollar-data-to-google-spreadsheets-etl
-              image: ghcr.io/crisszkutnik/dollar-data-to-google-spreadsheets-etl:1.1.1
+              image: ghcr.io/crisszkutnik/dollar-data-to-google-spreadsheets-etl:1.2.0
               imagePullPolicy: IfNotPresent
               env:
                 - name: SHEET_ID
