@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: hello-world.example
+    - host: private-k8s.cristobalszk.dev
       http:
         paths:
           - path: /grafana

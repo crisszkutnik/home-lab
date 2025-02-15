@@ -16,8 +16,8 @@ spec:
   values:
     grafana.ini:
       server:
-        domain: hello-world.example
-        root_url: http://hello-world.example/grafana
+        domain: private-k8s.cristobalszk.dev
+        root_url: https://private-k8s.cristobalszk.dev/grafana
         serve_from_sub_path: true
     service:
       type: NodePort
