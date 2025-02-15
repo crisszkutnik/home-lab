@@ -16,9 +16,6 @@ spec:
   values:
     serviceMonitor:
       enabled: true
-      additionalLabels:
-        # Have to add this label so kube-prometheus-stack scrapes the service monitor
-        release: prometheus
     service:
       type: NodePort
       nodePort: 32500

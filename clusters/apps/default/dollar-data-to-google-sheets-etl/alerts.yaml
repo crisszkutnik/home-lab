@@ -3,8 +3,6 @@ kind: PrometheusRule
 metadata:
   name: dollar-data-to-google-sheets-job-alerts
   namespace: default
-  labels:
-    release: prometheus
 spec:
   groups:
     - name: availability
