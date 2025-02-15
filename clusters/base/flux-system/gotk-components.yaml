@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/version: v2.4.0
     pod-security.kubernetes.io/warn: restricted
     pod-security.kubernetes.io/warn-version: latest
+    prometheus-scrape: "true"
   name: flux-system
 ---
 apiVersion: networking.k8s.io/v1
