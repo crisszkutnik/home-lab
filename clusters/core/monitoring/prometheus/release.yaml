@@ -47,9 +47,9 @@ spec:
         receivers:
           - name: discord
             discord_configs:
-              - webhook_url: {{ .Values.webhook_url }}
+              - webhook_url:
+                  valueFrom:
+                    secretKeyRef:
+                      name: prometheus-discord-notifications-webhook
+                      key: webhook_url
           - name: "null"
-  valuesFrom:
-    - secretKeyRef:
-      name: prometheus-discord-notifications-webhook
-      key: webhook_url
