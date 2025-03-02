@@ -25,3 +25,17 @@ spec:
     persistence:
       enabled: true
       size: 1Gi
+    livenessProbe:
+      httpGet:
+        path: /api/health
+        port: 30000
+      initialDelaySeconds: 10
+      timeoutSeconds: 30
+      failureThreshold: 5
+    readinessProbe:
+      httpGet:
+        path: /api/health
+        port: 3000
+      initialDelaySeconds: 60
+      timeoutSeconds: 30
+      failureThreshold: 10
