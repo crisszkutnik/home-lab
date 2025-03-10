@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegram-bot-deployment
+  namespace: default
+  labels:
+    app: telegram-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telegram-bot-pod
+  template:
+    metadata:
+      labels:
+        app: telegram-bot-pod
+    spec:
+      containers:
+        - image: ghcr.io/crisszkutnik/telegram-bot:1.0.0
+          imagePullPolicy: IfNotPresent
+          name: telegram-bot-container
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: 1
+          env:
+            - name: TELEGRAM_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-bot-secrets
+                  key: TELEGRAM_BOT_TOKEN

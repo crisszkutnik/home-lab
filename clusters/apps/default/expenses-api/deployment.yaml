@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expenses-api-deployment
+  namespace: default
+  labels:
+    app: expenses-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expenses-api-pod
+  template:
+    metadata:
+      labels:
+        app: expenses-api-pod
+    spec:
+      containers:
+        - image: ghcr.io/crisszkutnik/expenses-save-api:1.0.0
+          imagePullPolicy: IfNotPresent
+          name: expenses-api-container
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: 1
+          ports:
+            - name: grpc
+              containerPort: 5000
+          env:
+            - name: CREDENTIALS_BASE_64
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-api-secrets
+                  key: CREDENTIALS_BASE_64
+            - name: SPREADSHEET_ID
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-api-secrets
+                  key: SPREADSHEET_ID
