@@ -6,7 +6,6 @@ metadata:
   labels:
     app: expenses-api
 spec:
-  type: NodePort
   selector:
     app: expenses-api-pod
   ports:
