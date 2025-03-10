@@ -27,11 +27,11 @@ spec:
             - name: grpc
               containerPort: 5000
           env:
-            - name: CREDENTIALS_BASE_64
+            - name: CREDENTIALS_BASE64
               valueFrom:
                 secretKeyRef:
                   name: expenses-api-secrets
-                  key: CREDENTIALS_BASE_64
+                  key: CREDENTIALS_BASE64
             - name: SPREADSHEET_ID
               valueFrom:
                 secretKeyRef:
