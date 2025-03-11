@@ -6,3 +6,4 @@ resources:
   - discord-notifier
   - finance-market-data-puller
   - expenses-api
+  - telegram-bot

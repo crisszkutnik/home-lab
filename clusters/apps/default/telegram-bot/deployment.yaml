@@ -16,7 +16,7 @@ spec:
         app: telegram-bot-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/telegram-bot:1.0.0
+        - image: ghcr.io/crisszkutnik/telegram-bot:1.0.1
           imagePullPolicy: IfNotPresent
           name: telegram-bot-container
           resources:
