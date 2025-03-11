@@ -29,3 +29,8 @@ spec:
                 secretKeyRef:
                   name: telegram-bot-secrets
                   key: TELEGRAM_BOT_TOKEN
+            - name: EXPENSES_API_URL
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-bot-secrets
+                  key: EXPENSES_API_URL
