@@ -32,10 +32,8 @@ spec:
         logRetentionBytes: 1Gi
     externalAccess:
       enabled: true
-      type: NodePort
-      nodePorts:
-        - "30101"
-      autoDiscovery:
-        enabled: true
-    rbac:
-      create: true
+      controller:
+        service:
+          type: NodePort
+          nodePorts:
+            - "30101"
