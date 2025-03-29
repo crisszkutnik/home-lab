@@ -35,3 +35,7 @@ spec:
       type: NodePort
       nodePorts:
         - "30101"
+      autoDiscovery:
+        enabled: true
+    rbac:
+      create: true
