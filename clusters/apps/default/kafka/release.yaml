@@ -14,11 +14,6 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
-    service:
-      type: NodePort
-      nodePorts:
-        client: "30100"
-        external: "30101"
     controller:
       replicaCount: 1
       resources:
@@ -35,3 +30,8 @@ spec:
       extraConfig:
         logRetentionHours: 168 # 7 days
         logRetentionBytes: 1Gi
+    externalAccess:
+      enabled: true
+      type: NodePort
+      nodePorts:
+        - "30101"
