@@ -3,3 +3,8 @@ kind: Kustomization
 resources:
   - secret.yaml
   - release.yaml
+postBuild:
+  substituteFrom:
+    - kind: Secret
+      name: kafka-config
+      namespace: flux-system
