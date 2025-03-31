@@ -39,5 +39,9 @@ spec:
             - "30101"
     sasl:
       client:
-        users: "testuser1,testuser2"
-        passwords: "pass1,pass2"
+        users:
+          - testuser1
+          - testuser2
+        passwords:
+          - pass1
+          - pass2
