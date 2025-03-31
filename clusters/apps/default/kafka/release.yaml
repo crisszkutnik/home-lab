@@ -39,13 +39,5 @@ spec:
             - "30101"
     sasl:
       client:
-        users:
-          valueFrom:
-            secretKeyRef:
-              name: kafka-config
-              key: sasl-client-users
-        passwords:
-          valueFrom:
-            secretKeyRef:
-              name: kafka-config
-              key: sasl-client-passwords
+        users: "testuser1,testuser2"
+        passwords: "pass1,pass2"
