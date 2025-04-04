@@ -37,9 +37,10 @@ spec:
           type: NodePort
           nodePorts:
             - "30101"
+    # Had trouble trying to use 'secretKeyRef'
     sasl:
       client:
         users:
-          - $(TELEGRAM_BOT_USER)
+          - '{{ lookup "v1" "Secret" "flux-system" "kafka-config" | dig "data" "telegram-bot-user" | b64dec }}'
         passwords:
-          - $(TELEGRAM_BOT_PASSWORD)
+          - '{{ lookup "v1" "Secret" "flux-system" "kafka-config" | dig "data" "telegram-bot-password" | b64dec }}'

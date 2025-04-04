@@ -3,19 +3,3 @@ kind: Kustomization
 resources:
   - release.yaml
   - secret.yaml
-  - secret-patch.yaml
-vars:
-  - name: TELEGRAM_BOT_USER
-    objRef:
-      kind: Secret
-      name: kafka-config
-      namespace: flux-system
-    fieldRef:
-      fieldPath: data.telegram-bot-user
-  - name: TELEGRAM_BOT_PASSWORD
-    objRef:
-      kind: Secret
-      name: kafka-config
-      namespace: flux-system
-    fieldRef:
-      fieldPath: data.telegram-bot-password
