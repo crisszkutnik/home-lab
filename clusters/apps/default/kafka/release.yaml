@@ -41,6 +41,6 @@ spec:
     sasl:
       client:
         users:
-          - '{{ lookup "v1" "Secret" "flux-system" "kafka-config" | dig "data" "telegram-bot-user" | b64dec }}'
+          - "someuser"
         passwords:
-          - '{{ lookup "v1" "Secret" "flux-system" "kafka-config" | dig "data" "telegram-bot-password" | b64dec }}'
+          - "somepassword"
