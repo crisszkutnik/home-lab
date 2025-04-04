@@ -40,6 +40,6 @@ spec:
     sasl:
       client:
         users:
-          - "$(telegram-bot-user)"
+          - ${telegram-bot-user}
         passwords:
-          - "$(telegram-bot-password)"
+          - ${telegram-bot-password}

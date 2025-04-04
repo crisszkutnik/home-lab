@@ -4,14 +4,15 @@ metadata:
   name: kafka
   namespace: flux-system
 spec:
-  resources:
-    - ./secret.yaml
-    - ./release.yaml
+  interval: 10m
+  path: ./
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  prune: true
   postBuild:
     substituteFrom:
       - kind: Secret
         name: kafka-config
         namespace: flux-system
-    substitute:
-      telegram-bot-user: $(telegram-bot-user)
-      telegram-bot-password: $(telegram-bot-password)
