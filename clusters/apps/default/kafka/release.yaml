@@ -37,8 +37,6 @@ spec:
           type: NodePort
           nodePorts:
             - "30101"
-          externalIPs:
-            - "192.168.0.200"
     # Had trouble trying to use 'secretKeyRef'
     sasl:
       client:
