@@ -8,16 +8,12 @@ spec:
   chart:
     spec:
       chart: kafka
-      version: 31.5.0
+      version: 32.1.2
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
   values:
-    # listeners:
-    #   overrideListeners: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:30101
-    #  advertisedListeners: INTERNAL://kafka.default.svc.cluster.local:9092,EXTERNAL://192.168.0.200:30101
-    #  securityProtocolMap: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
     controller:
       replicaCount: 1
       resources:
