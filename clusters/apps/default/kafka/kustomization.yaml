@@ -1,18 +1,22 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-metadata:
-  name: kafka
-  namespace: flux-system
-spec:
-  interval: 10m
-  path: ./
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  prune: true
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: kafka-config
-        namespace: flux-system
+resources:
+  - release.yaml
+  - secret.yaml
+  - secret-patch.yaml
+
+vars:
+  - name: TELEGRAM_BOT_USER
+    objRef:
+      kind: Secret
+      name: kafka-config
+      namespace: flux-system
+    fieldRef:
+      fieldPath: data.telegram-bot-user
+  - name: TELEGRAM_BOT_PASSWORD
+    objRef:
+      kind: Secret
+      name: kafka-config
+      namespace: flux-system
+    fieldRef:
+      fieldPath: data.telegram-bot-password
