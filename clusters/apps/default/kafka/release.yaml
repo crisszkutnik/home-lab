@@ -14,6 +14,10 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
+    # listeners:
+    #   overrideListeners: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:30101
+    #  advertisedListeners: INTERNAL://kafka.default.svc.cluster.local:9092,EXTERNAL://192.168.0.200:30101
+    #  securityProtocolMap: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
     controller:
       replicaCount: 1
       resources:
@@ -27,11 +31,6 @@ spec:
         enabled: true
         size: 512Mi
         storageClass: local-path
-      config:
-        listeners: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:30101
-        listener.security.protocol.map: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-        inter.broker.listener.name: INTERNAL
-        advertised.listeners: INTERNAL://kafka.default.svc.cluster.local:9092,EXTERNAL://192.168.0.200:30101
       extraConfig:
         logRetentionHours: 168 # 7 days
         logRetentionBytes: 1Gi
@@ -42,6 +41,8 @@ spec:
           type: NodePort
           nodePorts:
             - "30101"
+          externalIPs:
+            - "192.168.0.200"
     # Had trouble trying to use 'secretKeyRef'
     sasl:
       client:
