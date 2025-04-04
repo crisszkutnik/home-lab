@@ -4,7 +4,6 @@ resources:
   - release.yaml
   - secret.yaml
   - secret-patch.yaml
-
 vars:
   - name: TELEGRAM_BOT_USER
     objRef:
