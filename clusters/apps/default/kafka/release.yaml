@@ -44,3 +44,5 @@ spec:
           - "someuser"
         passwords:
           - "somepassword"
+    listeners:
+      advertisedListeners: PLAINTEXT://192.168.0.200:30101
