@@ -45,3 +45,5 @@ spec:
           - "someuser"
         passwords:
           - "somepassword"
+    networkPolicy:
+      enabled: false
