@@ -34,6 +34,7 @@ spec:
       enabled: true
       controller:
         service:
+          domain: "192.168.0.200"
           type: NodePort
           nodePorts:
             - "30101"
