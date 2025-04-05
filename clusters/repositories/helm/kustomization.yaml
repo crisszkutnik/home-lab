@@ -7,4 +7,4 @@ resources:
   - ingress-nginx-charts.yaml
   - grafana-charts.yaml
   - prometheus-charts.yaml
-  # - bitnami-charts.yaml
+  - strimzi-charts.yaml
