@@ -4,5 +4,4 @@ resources:
   - flux-system
   - networking
   - monitoring
-  - kafka
   - default

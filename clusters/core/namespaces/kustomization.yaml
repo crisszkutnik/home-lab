@@ -4,4 +4,3 @@ resources:
   - networking.yaml
   - monitoring.yaml
   - security.yaml
-  - kafka.yaml
