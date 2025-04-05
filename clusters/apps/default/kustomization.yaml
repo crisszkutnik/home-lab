@@ -5,6 +5,5 @@ resources:
   - hello-node
   - discord-notifier
   - finance-market-data-puller
-  # - kafka
   - expenses-api
   - telegram-bot
