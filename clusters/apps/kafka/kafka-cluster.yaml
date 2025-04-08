@@ -17,9 +17,6 @@ spec:
         size: 2Gi
         deleteClaim: false
         kraftMetadata: shared
-      #- id: 0
-      #  type: ephemeral
-      #  kraftMetadata: shared
   resources:
     limits:
       memory: 1Gi
