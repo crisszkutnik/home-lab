@@ -3,7 +3,7 @@ kind: KafkaNodePool
 metadata:
   name: dual-role
   labels:
-    strimzi.io/cluster: my-cluster
+    strimzi.io/cluster: k8s-local-cluster
 spec:
   replicas: 1
   roles:
@@ -28,7 +28,7 @@ spec:
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: my-cluster
+  name: k8s-local-cluster
   annotations:
     strimzi.io/node-pools: enabled
     strimzi.io/kraft: enabled
@@ -62,7 +62,7 @@ spec:
         requests:
           memory: 64Mi
           cpu: 0.1
-    userOperator
+    userOperator:
       resources:
         limits:
           memory: 384Mi
