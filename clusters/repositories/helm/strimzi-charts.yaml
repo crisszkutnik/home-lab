@@ -7,4 +7,4 @@ spec:
   type: "oci"
   interval: 30m
   timeout: 5m
-  url: oci://quay.io/strimzi-helm/strimzi-kafka-operator
+  url: oci://quay.io/strimzi-helm
