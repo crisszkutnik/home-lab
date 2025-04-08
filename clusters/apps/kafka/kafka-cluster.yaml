@@ -21,10 +21,10 @@ spec:
   resources:
     limits:
       memory: 1Gi
-      cpu: 1
+      cpu: 1000m
     requests:
       memory: 64Mi
-      cpu: 0.1
+      cpu: 100m
 ---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
@@ -60,15 +60,15 @@ spec:
       resources:
         limits:
           memory: 384Mi
-          cpu: 0.5
+          cpu: 500m
         requests:
           memory: 64Mi
-          cpu: 0.1
+          cpu: 100m
     userOperator:
       resources:
         limits:
           memory: 384Mi
-          cpu: 0.5
+          cpu: 500m
         requests:
           memory: 64Mi
-          cpu: 0.1
+          cpu: 100m
