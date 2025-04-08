@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     replicas: 1
-    watchNamespaces:
-      - kafka
+    watchAnyNamespace: false
+    watchNamespaces: []
     resources:
       limits:
         memory: 384Mi
