@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expenses-receiver
+  namespace: default
+  labels:
+    app: expenses-receiver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expenses-receiver
+  template:
+    metadata:
+      labels:
+        app: expenses-receiver
+    spec:
+      containers:
+        - image: ghcr.io/crisszkutnik/expenses-receiver:1.0.0
+          imagePullPolicy: IfNotPresent
+          name: expenses-receiver-container
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 1
+            requests:
+              memory: 64Mi
+              cpu: 0.1
+          ports:
+            - name: web
+              containerPort: 3000
+          env:
+            - name: KAFKA_BROKERS
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-receiver
+                  key: KAFKA_BROKERS
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-receiver
+                  key: CLIENT_SECRET
