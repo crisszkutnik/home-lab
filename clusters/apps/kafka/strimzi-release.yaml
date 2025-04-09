@@ -13,14 +13,6 @@ spec:
         kind: HelmRepository
         name: strimzi-charts
         namespace: flux-system
-  install:
-    remediation:
-      remediateLastFailure: true
-      retries: 3
-  upgrade:
-    remediation:
-      remediateLastFailure: true
-      retries: 3
   values:
     replicas: 1
     watchAnyNamespace: false

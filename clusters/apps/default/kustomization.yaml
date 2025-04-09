@@ -7,3 +7,4 @@ resources:
   - finance-market-data-puller
   - expenses-api
   - telegram-bot
+  - expenses-receiver
