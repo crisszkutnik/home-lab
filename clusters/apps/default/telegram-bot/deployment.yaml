@@ -16,7 +16,7 @@ spec:
         app: telegram-bot-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/telegram-bot:1.0.1
+        - image: ghcr.io/crisszkutnik/telegram-bot:1.1.0
           imagePullPolicy: IfNotPresent
           name: telegram-bot-container
           resources:
@@ -34,3 +34,13 @@ spec:
                 secretKeyRef:
                   name: telegram-bot-secrets
                   key: EXPENSES_API_URL
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-bot-secrets
+                  key: DB_URL
+            - name: KAFKA_BROKERS
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-bot-secrets
+                  key: KAFKA_BROKERS
