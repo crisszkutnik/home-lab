@@ -16,7 +16,7 @@ spec:
         app: expenses-receiver
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/expenses-receiver:1.0.0
+        - image: ghcr.io/crisszkutnik/expenses-receiver:1.0.1
           imagePullPolicy: IfNotPresent
           name: expenses-receiver-container
           resources:
