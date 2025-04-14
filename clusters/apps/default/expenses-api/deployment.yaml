@@ -16,7 +16,7 @@ spec:
         app: expenses-api-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/expenses-save-api:1.0.1
+        - image: ghcr.io/crisszkutnik/expenses-save-api:1.1.1
           imagePullPolicy: IfNotPresent
           name: expenses-api-container
           resources:
@@ -37,3 +37,8 @@ spec:
                 secretKeyRef:
                   name: expenses-api-secrets
                   key: SPREADSHEET_ID
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-api-secrets
+                  key: DB_URL
