@@ -16,13 +16,16 @@ spec:
         app: finance-market-data-puller-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.5
+        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.6
           imagePullPolicy: IfNotPresent
           name: finance-market-data-puller-container
           resources:
             limits:
-              memory: "512Mi"
+              memory: 1Gi
               cpu: 1
+            requests:
+              memory: 128Mi
+              cpu: 0.3
           ports:
             - name: web
               containerPort: 8080
