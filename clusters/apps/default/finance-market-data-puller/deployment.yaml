@@ -16,7 +16,7 @@ spec:
         app: finance-market-data-puller-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.9
+        - image: ghcr.io/crisszkutnik/financial-market-data-puller:1.0.10
           imagePullPolicy: IfNotPresent
           name: finance-market-data-puller-container
           resources:
