@@ -42,3 +42,13 @@ spec:
                 secretKeyRef:
                   name: expenses-api-secrets
                   key: DB_URL
+            - name: EXCHANGE_RATE_TTL
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-api-secrets
+                  key: EXCHANGE_RATE_TTL
+            - name: STOCK_MARKET_API_URL
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-api-secrets
+                  key: STOCK_MARKET_API_URL
