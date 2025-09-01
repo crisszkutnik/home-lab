@@ -1,0 +1,20 @@
+- name: Assert required variables are defined
+  assert:
+    that:
+      - tunnel_token is defined and tunnel_token | length > 0
+    fail_msg: Prerequisites are not met
+    success_msg: All prerequisites were met. Starting Cloudflared installation
+
+- name: Download Cloudflared binary
+  command: curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
+
+- name: Install Cloudflared
+  become: true
+  command: dpkg -i cloudflared.deb
+
+- name: Cleanup binary
+  command: rm cloudflared.deb
+
+- name: Connect to tunnel
+  become: true
+  command: "cloudflared service install '{{ tunnel_token }}'"

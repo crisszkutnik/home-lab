@@ -1,0 +1,40 @@
+- name: Assert required variables are defined
+  assert:
+    that:
+      - github_ghcr_registry_username is defined and github_ghcr_registry_username | length > 0
+      - github_ghcr_registry_personal_access_token is defined and github_ghcr_registry_personal_access_token | length > 0
+    fail_msg: Prerequisites are not met
+    success_msg: All prerequisites were met. Starting K3s deployment
+
+# TODO: Run chown and set 0600 perms
+
+- name: Create .kube directory
+  become: true
+  file:
+    path: /home/{{ ansible_user }}/.kube
+    state: directory
+    owner: "{{ ansible_user }}"
+    mode: "0755"
+
+- name: Copy config file to user home directory
+  become: true
+  copy:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /home/{{ ansible_user }}/.kube/k3s.yaml
+    owner: "{{ ansible_user }}"
+    mode: "0755"
+    remote_src: yes # This indicates that the file is on the remote machine
+
+- name: Set config path
+  lineinfile:
+    path: /home/{{ ansible_user }}/.bashrc
+    line: export KUBECONFIG=~/.kube/k3s.yaml
+
+- name: Copy registries file
+  become: true
+  template:
+    src: registries.yaml.j2
+    dest: /etc/rancher/k3s/registries.yaml
+    owner: "{{ ansible_user }}"
+    mode: "0755"
+  notify: Restart K3s service

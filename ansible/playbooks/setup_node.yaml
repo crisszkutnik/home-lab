@@ -1,0 +1,6 @@
+- hosts: setup_node
+  roles:
+    - role: k3s/setup
+    - role: k3s/configure_kubectl
+    - role: k3s/install_flux
+    - role: cloudflared/setup

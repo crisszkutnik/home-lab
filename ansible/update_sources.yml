@@ -1,5 +1,0 @@
-- hosts: update_sources
-  gather_facts: yes
-  become: yes
-  roles:
-    - role: update_sources

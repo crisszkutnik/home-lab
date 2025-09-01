@@ -1,5 +1,0 @@
-- hosts: netplan_hosts
-  gather_facts: yes
-  become: yes
-  roles:
-    - role: netplan

@@ -1,7 +1,0 @@
-# TODO: Also add the SSH stuff for connection via tunnel
-# https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/
-- hosts: setup_cloudflared
-  gather_facts: yes
-  become: yes
-  roles:
-    - role: setup_cloudflared

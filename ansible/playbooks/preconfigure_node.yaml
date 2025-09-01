@@ -1,0 +1,4 @@
+- hosts: prereq
+  roles:
+    - role: common/upgrade
+    - role: common/netplan

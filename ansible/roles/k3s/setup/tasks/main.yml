@@ -1,0 +1,27 @@
+- name: Assert required variables are defined
+  assert:
+    that:
+      - master_ip is defined and master_ip | length > 0
+      - (node_type == 'master' and node_token is defined and node_token | length > 0) or
+        (node_type == 'agent' and agent_token is defined and agent_token | length > 0)
+    fail_msg: Prerequisites are not met
+    success_msg: All prerequisites were met. Starting K3s deployment
+
+- name: Install K3s as master node
+  become: true
+  shell:
+    cmd: curl -sfL https://get.k3s.io | sh -s - server --server https://{{ master_ip }}:6443 --token {{ node_token }}
+  when: node_type == 'master'
+
+- name: Install K3s as agent node
+  become: true
+  shell:
+    cmd: curl -sfL https://get.k3s.io | sh -s - agent --server https://{{ master_ip }}:6443 --token {{ agent_token }}
+  when: node_type == 'agent'
+
+- name: Check K3s service is up
+  become: true
+  systemd:
+    name: k3s
+    state: started
+    enabled: yes

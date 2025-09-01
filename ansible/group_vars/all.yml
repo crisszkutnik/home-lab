@@ -1,5 +1,0 @@
-master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
-extra_server_args: ""
-extra_agent_args: ""
-ansible_user: orangepi
-ansible_sudo_pass: orangepi

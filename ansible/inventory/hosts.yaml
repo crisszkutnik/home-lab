@@ -1,0 +1,43 @@
+setup_node:
+  vars:
+    ansible_user: ubuntu
+    ansible_python_interpreter: /usr/bin/python3
+    node_token: "{{ lookup('ansible.builtin.env', 'NODE_TOKEN') }}"
+    agent_token: "{{ lookup('ansible.builtin.env', 'AGENT_TOKEN') }}"
+    github_ghcr_registry_username: "{{ lookup('ansible.builtin.env', 'GITHUB_GHCR_REGISTRY_USERNAME') }}"
+    github_ghcr_registry_personal_access_token: "{{ lookup('ansible.builtin.env', 'GITHUB_GHCR_REGISTRY_PERSONAL_ACCESS_TOKEN') }}"
+    tunnel_token: "{{ lookup('ansible.builtin.env', 'TUNNEL_TOKEN') }}"
+    master_ip: "192.168.0.201"
+  children:
+    master:
+      hosts:
+        # 192.168.0.201:
+        # node_type: master
+        192.168.0.200:
+          node_type: master
+
+# setup_cloudflared:
+#   vars:
+#     tunnel_token: "{{ lookup('ansible.builtin.env', 'TUNNEL_TOKEN') }}"
+#   hosts:
+#     192.168.0.201:
+
+prereq:
+  hosts:
+    # 192.168.0.29:
+    #   ansible_user: "{{ lookup('ansible.builtin.env', 'ANSIBLE_USER') }}"
+    #   ansible_sudo_pass: "{{ lookup('ansible.builtin.env', 'ANSIBLE_SUDO_PASSWORD') }}"
+    #   ansible_python_interpreter: /usr/bin/python3
+    #   target_host_ip: 192.168.0.202
+    #   target_host_cloudflare_ip: 170.0.0.3
+    #   new_hostname: cluster-master-2
+    #   default_interface_name: eth0
+    # 192.168.0.19:
+    192.168.0.24:
+      ansible_user: "{{ lookup('ansible.builtin.env', 'ANSIBLE_USER') }}"
+      ansible_sudo_pass: "{{ lookup('ansible.builtin.env', 'ANSIBLE_SUDO_PASSWORD') }}"
+      ansible_python_interpreter: /usr/bin/python3
+      target_host_ip: 192.168.0.200
+      target_host_cloudflare_ip: 170.0.0.1
+      new_hostname: cluster-master-0
+      default_interface_name: eth0

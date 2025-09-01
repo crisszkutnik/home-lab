@@ -1,0 +1,84 @@
+# TODO: Allow to set a default interface manually in case it fails
+# - name: Install NetworkManager
+#   become: true
+#   apt:
+#     name: network-manager
+#     state: present
+
+# - name: Start and enable NetworkManager
+#   become: true
+#   systemd:
+#     name: NetworkManager.service
+#     state: started
+#     enabled: yes
+
+# - name: Verify NetworkManager service status
+#   become: true
+#   ansible.builtin.command: systemctl is-active NetworkManager.service
+#   register: nm_status
+#   changed_when: false
+
+# - name: Display NetworkManager service status
+#   become: true
+#   ansible.builtin.debug:
+#     msg: "NetworkManager service status: {{ nm_status.stdout }}"
+
+- name: Assert required variables are defined
+  assert:
+    that:
+      - new_hostname is defined and new_hostname | length > 0
+      - target_host_ip is defined and target_host_ip | length > 0
+      - target_host_cloudflare_ip is defined and target_host_cloudflare_ip | length > 0
+      - default_interface_name is defined and default_interface_name | length > 0
+    fail_msg: Prerequisites are not met
+    success_msg: All prerequisites were met. Preconfiguring node
+
+- name: Find existing netplan
+  become: true
+  ansible.builtin.find:
+    paths: /etc/netplan
+    patterns:
+      - "*.yaml"
+      - "*.yml"
+    file_type: file
+  register: yaml_files_to_delete
+
+- name: Delete the files found
+  become: true
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ yaml_files_to_delete.files }}"
+  when: yaml_files_to_delete.files is defined and yaml_files_to_delete.files | length > 0
+
+- name: Copy netplan
+  become: true
+  template:
+    src: netplan.j2
+    dest: /etc/netplan/99-network-config.yaml
+
+- name: Change netplan permissions
+  become: true
+  file:
+    path: /etc/netplan/99-network-config.yaml
+    mode: "0600"
+
+- name: Change hostname
+  become: true
+  hostname:
+    name: "{{ new_hostname }}"
+    use: debian
+
+- name: Alert of disconnection
+  debug:
+    msg: Netplan will be applied and host will be disconnected. Please reconnect to {{ target_host_ip }}
+
+- name: Apply netplan
+  become: true
+  command: netplan apply
+  async: 5
+  poll: 0
+
+- name: Alert of netplan applied
+  debug:
+    msg: Netplan was applied. New IP is {{ target_host_ip }}
