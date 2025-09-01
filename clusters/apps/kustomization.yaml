@@ -5,4 +5,4 @@ resources:
   - networking
   - monitoring
   - kafka
-  # - default
+  - default
