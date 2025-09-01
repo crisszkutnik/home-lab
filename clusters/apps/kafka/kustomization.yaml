@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - strimzi-release.yaml
   - kafka-cluster.yaml
+  - topics
