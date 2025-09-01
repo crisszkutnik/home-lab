@@ -2,6 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
   name: notification.new
+  namespace: kafka
   labels:
     strimzi.io/cluster: k8s-local-cluster
 spec:
