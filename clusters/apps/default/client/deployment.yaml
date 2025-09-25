@@ -16,7 +16,7 @@ spec:
         app: client-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/dashboard:0.0.8
+        - image: ghcr.io/crisszkutnik/dashboard:0.0.9
           imagePullPolicy: IfNotPresent
           name: client-container
           resources:
