@@ -8,3 +8,4 @@ resources:
   - expenses-api
   - telegram-bot
   - expenses-receiver
+  - server
