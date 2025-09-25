@@ -39,8 +39,8 @@ spec:
                 secretKeyRef:
                   name: client-secrets
                   key: VITE_BASE_URL
-            - name: TANSTACK_BASE_URL
+            - name: VITE_TANSTACK_BASE_URL
               valueFrom:
                 secretKeyRef:
                   name: client-secrets
-                  key: TANSTACK_BASE_URL
+                  key: VITE_TANSTACK_BASE_URL
