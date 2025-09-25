@@ -9,4 +9,3 @@ resources:
   - telegram-bot
   - expenses-receiver
   - server
-  - client
