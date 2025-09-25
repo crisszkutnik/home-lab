@@ -16,7 +16,7 @@ spec:
         app: client-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/dashboard:0.0.5
+        - image: ghcr.io/crisszkutnik/dashboard:0.0.6
           imagePullPolicy: IfNotPresent
           name: client-container
           resources:
@@ -39,3 +39,8 @@ spec:
                 secretKeyRef:
                   name: client-secrets
                   key: VITE_BASE_URL
+            - name: TANSTACK_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: client-secrets
+                  key: TANSTACK_BASE_URL
