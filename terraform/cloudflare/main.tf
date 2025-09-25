@@ -21,7 +21,7 @@ locals {
   private_subdomain              = "private-k8s"
   public_domain                  = "${local.public_subdomain}.${local.domain}"
   private_domain                 = "${local.private_subdomain}.${local.domain}"
-  nginx_service_localhost_url    = "http://localhost:31956"
+  nginx_service_localhost_url    = "http://localhost:32415"
 }
 
 

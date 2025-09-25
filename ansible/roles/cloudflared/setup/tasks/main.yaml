@@ -8,6 +8,8 @@
 - name: Download Cloudflared binary
   command: curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
 
+# TODO: Add certificate that is stored in ~/.cloudflared/cert.pem
+
 - name: Install Cloudflared
   become: true
   command: dpkg -i cloudflared.deb
