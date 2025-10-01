@@ -13,7 +13,7 @@ spec:
     - host: public-k8s.cristobalszk.dev
       http:
         paths:
-          - path: /ai-api(/|$)(.*)
+          - path: /server(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
