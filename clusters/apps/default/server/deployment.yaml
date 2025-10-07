@@ -16,7 +16,7 @@ spec:
         app: server-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/server:0.0.9
+        - image: ghcr.io/crisszkutnik/server:0.0.10
           imagePullPolicy: IfNotPresent
           name: server-container
           resources:
