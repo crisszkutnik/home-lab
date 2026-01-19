@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expenses-ui-deployment
+  namespace: default
+  labels:
+    app: expenses-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expenses-ui-pod
+  template:
+    metadata:
+      labels:
+        app: expenses-ui-pod
+    spec:
+      containers:
+        - image: ghcr.io/crisszkutnik/expenses-ui:1.0.0
+          imagePullPolicy: IfNotPresent
+          name: expenses-ui-container
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: 0.1
+            limits:
+              memory: "512Mi"
+              cpu: 0.5
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_API_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-ui-secrets
+                  key: VITE_API_BASE_URL
+            - name: VITE_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-ui-secrets
+                  key: VITE_BASE_URL
+            - name: VITE_TANSTACK_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-ui-secrets
+                  key: VITE_TANSTACK_BASE_URL
