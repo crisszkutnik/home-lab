@@ -4,6 +4,7 @@ metadata:
   name: add-auth-annotations
 annotations:
   nginx.ingress.kubernetes.io/auth-url: "http://auth-service-service.default.svc.cluster.local:5000/validate"
+  nginx.ingress.kubernetes.io/auth-method: "POST"
   nginx.ingress.kubernetes.io/auth-signin: "https://cristobalszk.cloudflareaccess.com/cdn-cgi/access/login/private-k8s.cristobalszk.dev?kid=0cc0ff16c71182ea0a011d608762c7c5ac2dddbdc54f7ab0f282f98ce25405c7"
   nginx.ingress.kubernetes.io/auth-response-headers: "internal-user-id"
 fieldSpecs:
