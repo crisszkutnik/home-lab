@@ -13,3 +13,6 @@ spec:
       port: 5000
       protocol: TCP
       targetPort: 5000
+    - name: http
+      port: 3100
+      targetPort: 3100

@@ -16,7 +16,7 @@ spec:
         app: expenses-api-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/expenses-save-api:2.0.1
+        - image: ghcr.io/crisszkutnik/expenses-save-api:2.1.2
           imagePullPolicy: IfNotPresent
           name: expenses-api-container
           resources:
@@ -26,6 +26,8 @@ spec:
           ports:
             - name: grpc
               containerPort: 5000
+            - name: http
+              containerPort: 3100
           env:
             - name: CREDENTIALS_BASE64
               valueFrom:
@@ -52,3 +54,8 @@ spec:
                 secretKeyRef:
                   name: expenses-api-secrets
                   key: STOCK_MARKET_API_URL
+            - name: HTTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: expenses-api-secrets
+                  key: HTTP_PORT

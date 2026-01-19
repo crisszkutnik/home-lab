@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service-service
+  namespace: default
+  labels:
+    app: auth-service
+spec:
+  selector:
+    app: auth-service-pod
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
