@@ -16,7 +16,7 @@ spec:
         app: expenses-ui-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/expenses-ui:1.0.0
+        - image: ghcr.io/crisszkutnik/expenses-ui:1.0.1
           imagePullPolicy: IfNotPresent
           name: expenses-ui-container
           resources:
