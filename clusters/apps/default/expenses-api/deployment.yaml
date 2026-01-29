@@ -16,7 +16,7 @@ spec:
         app: expenses-api-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/expenses-save-api:2.1.2
+        - image: ghcr.io/crisszkutnik/expenses-save-api:2.1.3
           imagePullPolicy: IfNotPresent
           name: expenses-api-container
           resources:
