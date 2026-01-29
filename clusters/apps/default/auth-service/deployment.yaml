@@ -16,7 +16,7 @@ spec:
         app: auth-service-pod
     spec:
       containers:
-        - image: ghcr.io/crisszkutnik/auth-service:1.0.0
+        - image: ghcr.io/crisszkutnik/auth-service:1.0.1
           imagePullPolicy: IfNotPresent
           name: auth-service-container
           resources:
