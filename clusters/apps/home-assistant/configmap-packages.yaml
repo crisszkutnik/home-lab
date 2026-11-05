@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-assistant-packages
+  namespace: home-assistant
+  labels:
+    app: home-assistant
+data:
+  # Mounted read-only at /config/packages and merged by Home Assistant.
+  # Changes made here are picked up on the next Home Assistant restart.
+  cluster.yaml: |
+    # Keep the SQLite database small on the OrangePi disks.
+    recorder:
+      purge_keep_days: 10
+      commit_interval: 30

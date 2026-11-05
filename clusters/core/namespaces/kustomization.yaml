@@ -5,3 +5,4 @@ resources:
   - monitoring.yaml
   - security.yaml
   - kafka.yaml
+  - home-assistant.yaml

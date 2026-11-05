@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+  labels:
+    app: home-assistant
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  # The config volume is ReadWriteOnce and the pod uses the host network,
+  # so never run two instances at the same time.
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      # hostNetwork lets Home Assistant use mDNS/SSDP to discover devices on
+      # the LAN (Chromecast, Sonos, printers, etc.). The API is therefore also
+      # reachable on the node's LAN IP at port 8123, in addition to the
+      # Cloudflare-protected ingress.
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      terminationGracePeriodSeconds: 60
+      initContainers:
+        - name: seed-config
+          image: busybox:1.37.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -eu
+              if [ ! -f /config/configuration.yaml ]; then
+                cp /seed/configuration.yaml /config/configuration.yaml
+                echo "Seeded /config/configuration.yaml from ConfigMap"
+              fi
+              if [ ! -f /config/.storage/http ]; then
+                mkdir -p /config/.storage
+                cp /seed/http.json /config/.storage/http
+                chmod 600 /config/.storage/http
+                echo "Seeded /config/.storage/http from ConfigMap"
+              fi
+              mkdir -p /config/themes
+              [ -f /config/automations.yaml ] || printf '[]\n' > /config/automations.yaml
+              [ -f /config/scripts.yaml ] || printf '{}\n' > /config/scripts.yaml
+              [ -f /config/scenes.yaml ] || printf '[]\n' > /config/scenes.yaml
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: seed
+              mountPath: /seed
+              readOnly: true
+      containers:
+        - name: home-assistant
+          image: ghcr.io/home-assistant/home-assistant:2026.11.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8123
+              protocol: TCP
+          env:
+            - name: TZ
+              value: America/Argentina/Buenos_Aires
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            # Read-only, Flux-managed settings merged by Home Assistant.
+            - name: packages
+              mountPath: /config/packages
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: "2"
+              memory: 1536Mi
+          startupProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 90
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 6
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: home-assistant-config
+        - name: seed
+          configMap:
+            name: home-assistant-seed
+        - name: packages
+          configMap:
+            name: home-assistant-packages
